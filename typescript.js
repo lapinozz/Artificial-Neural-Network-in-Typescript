@@ -310,6 +310,7 @@ var canvas;
 var renderer;
 var speedSlider;
 var speedDiv;
+var pauseCheckbox;
 window.onload = function () {
     var size = new Vec2(document.body.clientWidth, document.body.clientHeight / 2);
     canvas = new Canvas('cnvs', size);
@@ -317,6 +318,7 @@ window.onload = function () {
     renderer = new NetworkRenderer(network, canvas, pos);
     speedSlider = document.getElementById("speedSlider");
     speedDiv = document.getElementById("speedDiv");
+    pauseCheckbox = document.getElementsByName("pauseButton")[0];
     window.setTimeout(updateNetwork, 1000 / 60);
     window.setTimeout(updateGui, 1000 / 60);
 };
@@ -327,6 +329,8 @@ function updateGui() {
 var trainSetIndex = 0;
 function updateNetwork() {
     window.setTimeout(updateNetwork, +speedSlider.value);
+    if (pauseCheckbox.checked)
+        return;
     var radioButtons = document.getElementsByName("trainType");
     var checkedButton;
     var trainSet;
