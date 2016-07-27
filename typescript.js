@@ -327,10 +327,14 @@ function updateGui() {
     speedDiv.innerHTML = (1000 / +speedSlider.value).toFixed(2) + " FPS";
 }
 var trainSetIndex = 0;
+var step = 0;
 function updateNetwork() {
-    window.setTimeout(updateNetwork, +speedSlider.value);
-    if (pauseCheckbox.checked)
+    var timeout = pauseCheckbox.checked ? 1 : +speedSlider.value;
+    window.setTimeout(updateNetwork, timeout);
+    if (pauseCheckbox.checked && step == 0)
         return;
+    if (step != 0)
+        step--;
     var radioButtons = document.getElementsByName("trainType");
     var checkedButton;
     var trainSet;
@@ -368,5 +372,8 @@ function updateNetwork() {
         color = "red";
     }
     canvas.drawText(text, textPos, color, textSize);
+}
+function stepButton() {
+    step++;
 }
 //# sourceMappingURL=typescript.js.map
