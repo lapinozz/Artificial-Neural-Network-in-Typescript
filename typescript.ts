@@ -475,12 +475,17 @@ function updateGui()
 }
 
 let trainSetIndex = 0;
+let step = 0;
 function updateNetwork()
 {
-    window.setTimeout(updateNetwork, +speedSlider.value);
+    let timeout = pauseCheckbox.checked ? 1 : +speedSlider.value;
+    window.setTimeout(updateNetwork, timeout);
 
-    if(pauseCheckbox.checked)
+    if(pauseCheckbox.checked && step == 0)
         return;
+
+    if(step != 0)
+        step--;
 
     let radioButtons = document.getElementsByName("trainType");
     let checkedButton: HTMLInputElement;
@@ -536,4 +541,9 @@ function updateNetwork()
     }
     
     canvas.drawText(text, textPos, color, textSize);
+}
+
+function stepButton()
+{
+    step++;
 }
