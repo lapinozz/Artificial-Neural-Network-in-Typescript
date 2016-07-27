@@ -449,6 +449,8 @@ let renderer: NetworkRenderer;
 let speedSlider: HTMLInputElement;
 let speedDiv: HTMLDivElement;
 
+let pauseCheckbox: HTMLInputElement;
+
 window.onload = () => 
 {
     let size = new Vec2(document.body.clientWidth, document.body.clientHeight / 2);
@@ -459,6 +461,8 @@ window.onload = () =>
 
     speedSlider = <HTMLInputElement>document.getElementById("speedSlider");
     speedDiv = <HTMLDivElement>document.getElementById("speedDiv");
+
+    pauseCheckbox = <HTMLInputElement>document.getElementsByName("pauseButton")[0];
 
     window.setTimeout(updateNetwork, 1000 / 60);
     window.setTimeout(updateGui, 1000 / 60);
@@ -474,6 +478,9 @@ let trainSetIndex = 0;
 function updateNetwork()
 {
     window.setTimeout(updateNetwork, +speedSlider.value);
+
+    if(pauseCheckbox.checked)
+        return;
 
     let radioButtons = document.getElementsByName("trainType");
     let checkedButton: HTMLInputElement;
