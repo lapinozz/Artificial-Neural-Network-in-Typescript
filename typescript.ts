@@ -58,9 +58,6 @@ class Vec2
     }
 }
 
-const learning_rate: number = 0.3;
-const alpha: number = 0.5;
-
 class Neuron
 {
     inputs: Neuron[];
@@ -122,14 +119,14 @@ class Neuron
         this.gradient = dow * Neuron.activateAlternative(this.output);
     }
 
-    train()
+    train(learningRate: number = 0.3, alpha: number = 0.5)
     {
         for(let x = 0; x < this.weights.length; x++)
         {
             let oldDeltaWeight = this.deltaWeights[x];
             let newDeltaWeight =
                 // Individual input, magnified by the gradient and train rate:
-                learning_rate
+                learningRate
                 * (x < this.inputs.length ? this.inputs[x].output : 1)
                 * this.gradient
                 // Also add momentum = a fraction of the previous delta weight
@@ -478,9 +475,6 @@ function updateNetwork()
 {
     window.setTimeout(updateNetwork, +speedSlider.value);
 
-    // for(let set of trainSet)
-    // {
-
     let radioButtons = document.getElementsByName("trainType");
     let checkedButton: HTMLInputElement;
     let trainSet;
@@ -534,6 +528,5 @@ function updateNetwork()
         color = "red";
     }
     
-
     canvas.drawText(text, textPos, color, textSize);
 }
