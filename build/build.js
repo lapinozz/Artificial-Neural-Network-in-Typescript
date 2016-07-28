@@ -1,46 +1,3 @@
-function rand(min, max) {
-    if (min < 0)
-        return min + Math.random() * (Math.abs(min) + max);
-    else
-        return min + Math.random() * max;
-}
-function tanh(x) {
-    if (x === Infinity)
-        return 1;
-    else if (x === -Infinity)
-        return -1;
-    var y = Math.exp(2 * x);
-    return (y - 1) / (y + 1);
-}
-function lerp(interpolation, n1, n2) {
-    return (1.0 - interpolation) * n1 + interpolation * n2;
-}
-function lerpRGB(interpolation, rgb1, rgb2) {
-    return new RGB(lerp(interpolation, rgb1.r, rgb2.r), lerp(interpolation, rgb1.g, rgb2.g), lerp(interpolation, rgb1.b, rgb2.b));
-}
-var RGB = (function () {
-    function RGB(r, g, b) {
-        if (r === void 0) { r = 0.0; }
-        if (g === void 0) { g = 0.0; }
-        if (b === void 0) { b = 0.0; }
-        this.r = r;
-        this.g = g;
-        this.b = b;
-    }
-    RGB.prototype.toString = function () {
-        return 'rgb(' + this.r.toFixed() + ',' + this.g.toFixed() + ',' + this.b.toFixed() + ')';
-    };
-    return RGB;
-}());
-var Vec2 = (function () {
-    function Vec2(x, y) {
-        if (x === void 0) { x = 0; }
-        if (y === void 0) { y = 0; }
-        this.x = x;
-        this.y = y;
-    }
-    return Vec2;
-}());
 var Neuron = (function () {
     function Neuron(inputNeurons, extraWeight) {
         if (inputNeurons === void 0) { inputNeurons = null; }
@@ -376,4 +333,47 @@ function updateNetwork() {
 function stepButton() {
     step++;
 }
-//# sourceMappingURL=typescript.js.map
+function rand(min, max) {
+    if (min < 0)
+        return min + Math.random() * (Math.abs(min) + max);
+    else
+        return min + Math.random() * max;
+}
+function tanh(x) {
+    if (x === Infinity)
+        return 1;
+    else if (x === -Infinity)
+        return -1;
+    var y = Math.exp(2 * x);
+    return (y - 1) / (y + 1);
+}
+function lerp(interpolation, n1, n2) {
+    return (1.0 - interpolation) * n1 + interpolation * n2;
+}
+function lerpRGB(interpolation, rgb1, rgb2) {
+    return new RGB(lerp(interpolation, rgb1.r, rgb2.r), lerp(interpolation, rgb1.g, rgb2.g), lerp(interpolation, rgb1.b, rgb2.b));
+}
+var RGB = (function () {
+    function RGB(r, g, b) {
+        if (r === void 0) { r = 0.0; }
+        if (g === void 0) { g = 0.0; }
+        if (b === void 0) { b = 0.0; }
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+    RGB.prototype.toString = function () {
+        return 'rgb(' + this.r.toFixed() + ',' + this.g.toFixed() + ',' + this.b.toFixed() + ')';
+    };
+    return RGB;
+}());
+var Vec2 = (function () {
+    function Vec2(x, y) {
+        if (x === void 0) { x = 0; }
+        if (y === void 0) { y = 0; }
+        this.x = x;
+        this.y = y;
+    }
+    return Vec2;
+}());
+//# sourceMappingURL=build.js.map
